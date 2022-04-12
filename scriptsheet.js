@@ -14,6 +14,7 @@ function submitFunc() {
 
         if(strArr[0] === firStr) {
             console.log("Match");
+            document.getElementById("1-0").style.backgroundColor = 'green';
             
         }else{
             console.log("not a match");
