@@ -1,12 +1,13 @@
 
 console.log("Hello, World!")
 
-var str = "hello";
+var str = "HELLO";
 var strArr = str.split('', 5);
 var row = 1;
 var placer = 1;
 var keyPress = false; //Needed to stop the user input from going back to 1-0
 var userGuess = []
+var winningInt = 0;
 
 //----Once the body loads the input goes straight to 1-0 without clicking there------
 function myFunction() {
@@ -17,21 +18,12 @@ function myFunction() {
         keyPress = true;
 }}
 
-//---------------------- This function jumps from one input to the next---
-/*
-function jumper(field, placement){
-    if(field.value.length >= field.maxLength){
-        document.getElementById(placement).focus();
-        
-    }
-}
-*/
-//-------------------------------------------------------------------------
 
 function jumper(field){
     if(field.value.length >= field.maxLength){
 
         if(placer == 5){
+            submitFunc();
             row +=1;
             placer = 0;
         }
@@ -49,17 +41,13 @@ function submitFunc() {
     for(var i = 0; i < str.length ; i++){
 
         var userIn = document.getElementById(row + "-" + i).value;
-        userGuess.push(userIn);
-
-
-        //Need to gather the user input
+        userGuess.push(userIn.toUpperCase());
         
         if(userGuess[i] === strArr[i]) {
 
             console.log("Match");
-            document.getElementById( row + "-" + i).style.backgroundColor = '#AFE1AF';
-            
-            
+            document.getElementById( row + "-" + i).style.backgroundColor = '#AFE1AF';   
+            winningInt += 1;     
         }
         
         else{
@@ -69,15 +57,19 @@ function submitFunc() {
 
 
     }
-    row = row+1;
+
+    if (winningInt == 5) {
+        document.getElementById("notification").innerHTML = "You Won!!!";
+    }
     userGuess = [];
+    winningInt = 0;
+    /*
+    row = row+1;
     console.log(userGuess);
     console.log(row);
 
     if (row === 5) {
         document.getElementById("notification").innerHTML = "You lose!";
-    }
-    
-
+    } */
 }
 
