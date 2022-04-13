@@ -2,27 +2,41 @@
 console.log("Hello, World!")
 
 var str = "hello";
-var strArr = str.split('', 5)
-var levelArr = [0, 0]
+var strArr = str.split('', 5);
+var row = 1;
+var userGuess = []
 
 
 function submitFunc() {
 
-    var firStr = document.getElementById("1-0").value;
-
     for(var i = 0; i < str.length ; i++){
 
-        if(strArr[0] === firStr) {
+        var userIn = document.getElementById(row + "-" + i).value;
+        userGuess.push(userIn);
+
+
+        //Need to gather the user input
+        
+        if(userGuess[i] === strArr[i]) {
+
             console.log("Match");
-            document.getElementById("1-0").style.backgroundColor = 'green';
+            document.getElementById( row + "-" + i).style.backgroundColor = '#AFE1AF';
             
-        }else{
+            
+        }
+        
+        else{
             console.log("not a match");
+            document.getElementById(row + "-" + i).style.backgroundColor = '#ff9999';
         }
 
 
     }
-
+    row = row+1;
+    userGuess = [];
+    console.log(userGuess);
+    console.log(row);
+    
 
 }
 
